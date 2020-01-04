@@ -4,9 +4,16 @@
     border-radius: 50%;
 }
 
-#containerArrow{
+#containerArrow,#conteinerNodo{
     width: 50px;
     height: 50px;
+}
+
+#valorNodo{
+    margin-top: 12%;
+    margin-left: 30%;
+    height: 30px;
+    width: 20px;
 }
 
 #arrow{
@@ -18,10 +25,21 @@
 
 #arrow::after{
     content: '';
-    position: fixed;
-    background-color: red;
-    left: 1px;
+    position: absolute;
+    background-color: white;
+    right: -4px;
+    top: 12px;
     width: 30px;
     height: 10px;
     transform: rotate(45deg);
+}
+#arrow::before{
+    content: '';
+    position: absolute;
+    background-color: white;
+    right: -4px;
+    bottom: 12px;
+    width: 30px;
+    height: 10px;
+    transform: rotate(-45deg);
 }
