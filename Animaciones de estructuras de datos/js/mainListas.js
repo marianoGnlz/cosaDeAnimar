@@ -5,8 +5,9 @@ class Nodo{
 }
 class UI{
     crearNodo(nodo){
-        const $conteinerNodes = document.querySelector('#conteinerNodes');
-        $conteinerNodes.innerHTML = $conteinerNodes.innerHTML + `
+        if (nodo.valor > -1 && nodo.valor < 10) {
+            const $conteinerNodes = document.querySelector('#conteinerNodes');
+            $conteinerNodes.innerHTML = $conteinerNodes.innerHTML + `
             <div id="nodo" class="bg-info d-inline-block position-relative">
                 <div id="conteinerNodo" class="d-inline-block">
                     <p id="valorNodo" class="position-absolute mb-0 h3">${nodo.valor}</p>
@@ -14,6 +15,9 @@ class UI{
             </div>
         `
         this.crearArrow();
+        }else{
+            this.showErrorValor('Valor no permitido')
+        }
     }
     crearArrow(){
         const $conteinerNodes = document.querySelector('#conteinerNodes');
@@ -23,28 +27,45 @@ class UI{
         </div>
         `
     }
-    showError(){
+    showErrorValor(error){
         const $valueNodo = document.querySelector('#valueNodo');
-        $valueNodo.className ='error-border ' + $valueNodo.className;
+        const nodoClass = $valueNodo.className;
+        $valueNodo.className ='error-border ' + nodoClass;
         const $navBar = document.querySelector('#navbar');
         const $cite = document.querySelector('#cite');
         const $divError = document.createElement('div');
-        $divError.innerText = 'Error, el campo Valor no puede estar vacío'
+        $divError.innerText = error;
         $divError.className = 'error h6 card text-light text-center w-50';
         $navBar.insertBefore($divError,$cite);
+    }
+    deleteErrorValor(){
+        document.querySelector('.error').remove();
+        document.querySelector('#valueNodo').className = 'mb-1 w-50'
     }
 }
 
 
-const $create = document.querySelector('#create');
+const $create = document.querySelector('#create-input');
 
 $create.onclick = function(){
     const ui = new UI();
+    if (document.querySelector('.error')){
+       ui.deleteErrorValor()
+    }
     const $valueNodo = document.querySelector('#valueNodo');
     if ($valueNodo.value === '') {
-        ui.showError()
+        ui.showErrorValor('Error, el campo Valor no puede estar vacío')
     }else{
         const nodo = new Nodo($valueNodo.value);
         ui.crearNodo(nodo);
+    }
+}
+
+const $valueNodo = document.querySelector("#valueNodo");
+
+$valueNodo.onclick = function(){
+    const ui = new UI();
+    if (document.querySelector('.error')){
+       ui.deleteErrorValor()
     }
 }
