@@ -43,3 +43,17 @@
     height: 10px;
     transform: rotate(-45deg);
 }
+
+.error{
+    background-color: red;
+}
+
+.error-border{
+    border-top-color: red;
+    border-bottom-color: red;
+    border-right-color: red;
+    border-left-color: red;
+}
+#footer-card{
+    height: 150px;
+}

@@ -5,19 +5,44 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Listas</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='css\bootstrap.min.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel='stylesheet' type='text/css' media='screen' href='css\listas.css'>
 </head>
-<body>
-    <nav id="navbar" class="navbar navbar-light bg-light display-4">
+<body class="bg-dark">
+    <nav id="navbar" class="navbar navbar-light bg-info display-4">
         Listas
-            <cite class="h6 text-muted">- by Gonzalez, Mariano</cite>
+            <cite id="cite" class="h6 text-muted">- by Gonzalez, Mariano</cite>
     </nav>    
     <div id="conteinerNodes" class="mt-5 ml-3 mr-3 mb-5 position-relative">  
     </div>
-    <footer>
-        
-    </footer>
+    <div id="footer-card" class="card">
+        <div class="card-body">
+            <div class="row row-cols-3">
+                <div id="create" class="card col align-items-center">
+                    <input type="submit" name="create" id="create" class="mt-3 btn btn-primary mb-1 w-100" value="Crear"> 
+                    <input type="number" name="value" id="valueNodo" min="0" max="9" placeholder="Valor" class="mb-1 w-50">                
+                </div>
+                <div id="delete" class="card col align-items-center">
+                    <input type="submit" name="delete" id="delete" class="mt-3  w-100 btn btn-primary mb-1" value="Borrar">
+                    <input type="number" name="value" id="valueNodo" placeholder="Posición" class="mb-1 w-50">  
+                </div>
+                <div id="sort" class="card col align-items-center">
+                    <div class="card-title text-center h4 mt-3">Ordenamiento</div>
+                    <div class="dropdown mb-1">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Método</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                            <div class="dropdown-item">Quicksort</div>
+                            <div class="dropdown-item">Radix</div>
+                            <div class="dropdown-item">Bubble Sort</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src='js\mainListas.js'></script>
 </body>
 </html>
