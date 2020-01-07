@@ -16,7 +16,9 @@ class UI{
         `
         this.crearArrow();
         }else{
-            this.showErrorValor('Valor no permitido')
+            const $valueNodo = document.querySelector('#valueNodo');
+            $valueNodo.className ='error-border ' + $valueNodo.className;
+            this.showError('Valor no permitido')
         }
     }
     crearArrow(){
@@ -27,10 +29,7 @@ class UI{
         </div>
         `
     }
-    showErrorValor(error){
-        const $valueNodo = document.querySelector('#valueNodo');
-        const nodoClass = $valueNodo.className;
-        $valueNodo.className ='error-border ' + nodoClass;
+    showError(error){
         const $navBar = document.querySelector('#navbar');
         const $cite = document.querySelector('#cite');
         const $divError = document.createElement('div');
@@ -38,9 +37,10 @@ class UI{
         $divError.className = 'error h6 card text-light text-center w-50';
         $navBar.insertBefore($divError,$cite);
     }
-    deleteErrorValor(){
+    deleteError(){
         document.querySelector('.error').remove();
-        document.querySelector('#valueNodo').className = 'mb-1 w-50'
+        const $inputs = document.querySelectorAll("input[name='value']");
+        $inputs.forEach(input => input.className = 'mb-1 w-50');
     }
 }
 
@@ -49,12 +49,14 @@ const $create = document.querySelector('#create-input');
 
 $create.onclick = function(){
     const ui = new UI();
-    if (document.querySelector('.error')){
-       ui.deleteErrorValor()
+    if (document.querySelector('.error')){ 
+       ui.deleteError()
     }
     const $valueNodo = document.querySelector('#valueNodo');
     if ($valueNodo.value === '') {
-        ui.showErrorValor('Error, el campo Valor no puede estar vacío')
+        const $valueNodo = document.querySelector('#valueNodo');
+        $valueNodo.className ='error-border ' + $valueNodo.className;
+        ui.showError('Error, el campo Valor no puede estar vacío')
     }else{
         const nodo = new Nodo($valueNodo.value);
         ui.crearNodo(nodo);
@@ -62,10 +64,39 @@ $create.onclick = function(){
 }
 
 const $valueNodo = document.querySelector("#valueNodo");
-
 $valueNodo.onclick = function(){
+    if (document.querySelector('.error')){
+        const ui = new UI();
+        ui.deleteError()
+    }
+}
+
+const $positionNodo = document.querySelector("#positionNodo");
+$positionNodo.onclick = function(){
+    if (document.querySelector('.error')){
+        const ui = new UI();
+        ui.deleteError()
+    }
+}
+
+
+const $deleteNodo = document.querySelector('#delete-nodo');
+
+$deleteNodo.onclick = function(){
     const ui = new UI();
     if (document.querySelector('.error')){
-       ui.deleteErrorValor()
+        ui.deleteError()
+     }
+    const $positionNode = document.querySelector('#positionNodo');
+    const $allNodes = document.querySelectorAll('#nodo');
+    const $allArrows = document.querySelectorAll('#containerArrow');
+    if ($positionNode.value) {
+        if (($allNodes.length && $positionNode.value-1 >= 0)&&($allNodes.length >= $positionNode.value-1 )){
+            $allArrows[$positionNode.value-1].remove();
+            $allNodes[$positionNode.value-1].remove();
+        } else {
+            $positionNode.className ='error-border ' + $positionNode.className;
+            ui.showError('No existe la posicion solicitada');
+        }
     }
 }
