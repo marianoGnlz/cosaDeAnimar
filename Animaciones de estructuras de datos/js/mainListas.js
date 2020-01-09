@@ -8,7 +8,7 @@ class UI{
         if (nodo.valor > -1 && nodo.valor < 10) {
             const $conteinerNodes = document.querySelector('#conteinerNodes');
             $conteinerNodes.innerHTML = $conteinerNodes.innerHTML + `
-            <div id="nodo" class="bg-info d-inline-block position-relative">
+            <div id="nodo" class="bg-info d-inline-block position-relative animated bounce">
                 <div id="conteinerNodo" class="d-inline-block">
                     <p id="valorNodo" class="position-absolute mb-0 h3">${nodo.valor}</p>
                 </div>
@@ -24,7 +24,7 @@ class UI{
     crearArrow(){
         const $conteinerNodes = document.querySelector('#conteinerNodes');
         $conteinerNodes.innerHTML = $conteinerNodes.innerHTML + `
-        <div id="containerArrow" class="d-inline-block position-relative">
+        <div id="containerArrow" class="animacion d-inline-block position-relative">
             <div id="arrow"></div>
         </div>
         `
@@ -46,7 +46,7 @@ class UI{
     crearArrowAntes(posicion){
         const $newArrow = document.createElement('div');
         $newArrow.id = 'containerArrow';
-        $newArrow.className = 'd-inline-block position-relative';
+        $newArrow.className = 'animacion d-inline-block position-relative';
         $newArrow.innerHTML = `<div id="arrow"></div>`;
         const $nodosActuales = document.querySelectorAll('#nodo');
         const $conteinerNodes = document.querySelector('#conteinerNodes');
@@ -57,7 +57,8 @@ class UI{
         const $cite = document.querySelector('#cite');
         const $divError = document.createElement('div');
         $divError.innerText = error;
-        $divError.className = 'error h6 card text-light text-center w-50';
+        $divError.className = 'error alert alert-danger w-50 h6';
+        $divError.role = 'alert'
         $navBar.insertBefore($divError,$cite);
     }
     deleteError(){
@@ -118,7 +119,10 @@ $deleteNodo.onclick = function(){
     const $positionNode = document.querySelector('#positionNodo');
     const $allNodes = document.querySelectorAll('#nodo');
     const $allArrows = document.querySelectorAll('#containerArrow');
-    if ($positionNode.value) {
+    if (document.querySelector("#checkBox").checked) {
+        $allArrows.forEach(arrow => arrow.remove());
+        $allNodes.forEach(nodo => nodo.remove())
+    } else if ($positionNode.value) {
         if (($allNodes.length && $positionNode.value-1 >= 0)&&($allNodes.length > $positionNode.value-1 )){
             $allArrows[$positionNode.value-1].remove();
             $allNodes[$positionNode.value-1].remove();
@@ -127,4 +131,21 @@ $deleteNodo.onclick = function(){
             ui.showError('No existe la posicion solicitada');
         }
     }
+}
+
+function intercambio(){
+    const $nodoUno = document.querySelectorAll('#nodo')[0];
+    const $nodoDos = document.querySelectorAll('#nodo')[1];
+
+    $nodoUno.classList.add('intercambio');
+    $nodoDos.classList.add('intercambioInverso');
+
+    setTimeout(function(){
+        let resguardo = $nodoUno.firstElementChild.innerHTML;
+        $nodoUno.firstElementChild.innerHTML = $nodoDos.firstElementChild.innerHTML;
+        $nodoDos.firstElementChild.innerHTML = resguardo;
+        $nodoUno.classList.remove('intercambio');
+        $nodoDos.classList.remove('intercambioInverso');
+    },4000)
+
 }
