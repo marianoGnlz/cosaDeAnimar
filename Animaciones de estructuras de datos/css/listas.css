@@ -9,11 +9,16 @@
     height: 50px;
 }
 
+
 #valorNodo{
     margin-top: 12%;
     margin-left: 30%;
     height: 30px;
     width: 20px;
+}
+
+#valueNodo,#positionNodo{
+    height: 38px;
 }
 
 #arrow{
@@ -55,5 +60,5 @@
     border-left-color: red;
 }
 #footer-card{
-    height: 150px;
+    height: 200px;
 }

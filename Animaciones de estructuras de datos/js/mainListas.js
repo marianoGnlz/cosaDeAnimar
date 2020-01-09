@@ -29,6 +29,29 @@ class UI{
         </div>
         `
     }
+    crearNodoAntes(nodo,posicion){
+        const $divNodo = document.createElement('div');
+        $divNodo.id = 'nodo';
+        $divNodo.className = 'bg-info d-inline-block position-relative';
+        $divNodo.innerHTML = `
+            <div id="conteinerNodo" class="d-inline-block">
+                    <p id="valorNodo" class="position-absolute mb-0 h3">${nodo.valor}</p>
+                </div>
+        `
+        const $nodosActuales = document.querySelectorAll('#nodo');
+        const $conteinerNodes = document.querySelector('#conteinerNodes');
+        $conteinerNodes.insertBefore($divNodo,$nodosActuales[posicion-1]);
+        this.crearArrowAntes(posicion);
+    }
+    crearArrowAntes(posicion){
+        const $newArrow = document.createElement('div');
+        $newArrow.id = 'containerArrow';
+        $newArrow.className = 'd-inline-block position-relative';
+        $newArrow.innerHTML = `<div id="arrow"></div>`;
+        const $nodosActuales = document.querySelectorAll('#nodo');
+        const $conteinerNodes = document.querySelector('#conteinerNodes');
+        $conteinerNodes.insertBefore($newArrow,$nodosActuales[posicion]);
+    }
     showError(error){
         const $navBar = document.querySelector('#navbar');
         const $cite = document.querySelector('#cite');
@@ -40,7 +63,7 @@ class UI{
     deleteError(){
         document.querySelector('.error').remove();
         const $inputs = document.querySelectorAll("input[name='value']");
-        $inputs.forEach(input => input.className = 'mb-1 w-50');
+        $inputs.forEach(input => input.className = 'col');
     }
 }
 
@@ -59,7 +82,13 @@ $create.onclick = function(){
         ui.showError('Error, el campo Valor no puede estar vacío')
     }else{
         const nodo = new Nodo($valueNodo.value);
-        ui.crearNodo(nodo);
+        let $valorPosicion = document.querySelector('#valorPosicion');
+        if ($valorPosicion.value === '') {
+            ui.crearNodo(nodo); 
+        } else {
+            const posicion = document.querySelector('#valorPosicion').value;
+            ui.crearNodoAntes(nodo,posicion);
+        }
     }
 }
 
@@ -81,7 +110,6 @@ $positionNodo.onclick = function(){
 
 
 const $deleteNodo = document.querySelector('#delete-nodo');
-
 $deleteNodo.onclick = function(){
     const ui = new UI();
     if (document.querySelector('.error')){
@@ -91,7 +119,7 @@ $deleteNodo.onclick = function(){
     const $allNodes = document.querySelectorAll('#nodo');
     const $allArrows = document.querySelectorAll('#containerArrow');
     if ($positionNode.value) {
-        if (($allNodes.length && $positionNode.value-1 >= 0)&&($allNodes.length >= $positionNode.value-1 )){
+        if (($allNodes.length && $positionNode.value-1 >= 0)&&($allNodes.length > $positionNode.value-1 )){
             $allArrows[$positionNode.value-1].remove();
             $allNodes[$positionNode.value-1].remove();
         } else {

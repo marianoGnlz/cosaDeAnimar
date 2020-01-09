@@ -15,25 +15,51 @@
     </nav>    
     <div id="conteinerNodes" class="mt-5 ml-3 mr-3 mb-5 position-relative">  
     </div>
-    <div id="footer-card" class="card">
-        <div class="card-body">
-            <div class="row row-cols-3">
-                <div id="create" class="card col align-items-center">
-                    <input type="submit" name="create" id="create-input" class="mt-3 btn btn-primary mb-1 w-100" value="Crear"> 
-                    <input type="number" name="value" id="valueNodo" min="0" max="9" placeholder="Valor" class="mb-1 w-50">                
-                </div>
-                <div id="delete" class="card col align-items-center">
-                    <input type="submit" name="delete" id="delete-nodo" class="mt-3  w-100 btn btn-primary mb-1" value="Borrar">
-                    <input type="number" name="value" id="positionNodo" placeholder="Posición" min="1" class="mb-1 w-50">  
-                </div>
-                <div id="sort" class="card col align-items-center">
-                    <div class="card-title text-center h4 mt-3">Ordenamiento</div>
-                    <div class="dropdown mb-1">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Método</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                            <div class="dropdown-item">Quicksort</div>
-                            <div class="dropdown-item">Radix</div>
-                            <div class="dropdown-item">Bubble Sort</div>
+    <div id="card" class="mx-auto">
+        <div id="footer-card" class="card">
+            <div class="card-body">
+                <div class="row row-cols-3">
+                    <div id="create" class="card col align-items-center">
+                        <input type="submit" name="create" id="create-input" class="mt-3 btn btn-primary mb-1 w-100 mb-2" value="Crear"> 
+                        <div class="w-75 mb-3">
+                            <input type="number" name="value" id="valueNodo" min="0" max="9" placeholder="Valor" class="col"> 
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Insertar antes de:</span>
+                                        <input type="number" id="valorPosicion" placeholder="Posicion">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="delete" class="card col align-items-center">
+                        <input type="submit" name="delete" id="delete-nodo" class="mt-3 mb-2 w-100 btn btn-primary mb-1" value="Borrar">
+                        <div class="row w-75 mb-3">
+                            <input type="number" name="value" id="positionNodo" placeholder="Posición" min="1" class="col">
+                        </div>
+                        <div class="row">
+                            <div class="col input-group">
+                                <span class="input-group-text">Todo</span>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <input type="checkbox" id="checkBox">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sort" class="card col align-items-center">
+                        <div class="card-title text-center h4 mt-3">Ordenamiento</div>
+                        <div class="dropdown mb-1">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Método</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                                <div class="dropdown-item">Quicksort</div>
+                                <div class="dropdown-item">Radix</div>
+                                <div class="dropdown-item">Bubble Sort</div>
+                            </div>
                         </div>
                     </div>
                 </div>
