@@ -8,7 +8,7 @@ class UI{
         if (nodo.valor > -1 && nodo.valor < 10) {
             const $conteinerNodes = document.querySelector('#conteinerNodes');
             $conteinerNodes.innerHTML = $conteinerNodes.innerHTML + `
-            <div id="nodo" class="bg-info d-inline-block position-relative animated bounce">
+            <div id="nodo" class="bg-info d-inline-block position-relative">
                 <div id="conteinerNodo" class="d-inline-block">
                     <p id="valorNodo" class="position-absolute mb-0 h3">${nodo.valor}</p>
                 </div>
@@ -168,4 +168,28 @@ $quickSort.onclick = function(){
 
     $allValues.forEach(value => ui.crearNodo(new Nodo(value)))
 
+}
+
+const $menu = document.querySelector('#menu');
+$menu.onclick = function(){
+    $('.collapse').collapse('toggle')
+}
+
+function animar(){
+    const $allNodes = document.querySelectorAll('#nodo');
+    const $allArrows = document.querySelectorAll('#containerArrow');
+
+    $allNodes[0].classList.add('pivote');
+
+    setTimeout(function(){
+        $allNodes[1].classList.add('nodoDerechaDos')
+    },5000)
+
+
+
+
+    setTimeout(function(){
+        $allNodes[0].classList.remove('pivote');
+        $allNodes[1].classList.remove('nodoDerechaDos')
+    },10000)
 }

@@ -16,3 +16,11 @@ function quickSort(array){
     }
     return (new Array).concat(quickSort(arrayIzquierda),pivote,quickSort(arrayDerecha));
 }
+
+function prueba(){
+    let x = [3,4,5,6,0,2,7,4,8,9]
+    let ui = new UI()
+    x.forEach(n => ui.crearNodo(new Nodo(n)))
+}
+
+prueba()
