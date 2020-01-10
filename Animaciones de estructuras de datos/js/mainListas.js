@@ -133,9 +133,9 @@ $deleteNodo.onclick = function(){
     }
 }
 
-function intercambio(){
-    const $nodoUno = document.querySelectorAll('#nodo')[0];
-    const $nodoDos = document.querySelectorAll('#nodo')[1];
+function intercambio(uno,dos){
+    const $nodoUno = document.querySelectorAll('#nodo')[uno-1];
+    const $nodoDos = document.querySelectorAll('#nodo')[dos-1];
 
     $nodoUno.classList.add('intercambio');
     $nodoDos.classList.add('intercambioInverso');
@@ -147,5 +147,25 @@ function intercambio(){
         $nodoUno.classList.remove('intercambio');
         $nodoDos.classList.remove('intercambioInverso');
     },4000)
+}
+
+const $quickSort = document.querySelector('#quick-sort');
+
+$quickSort.onclick = function(){
+    const $allP = document.querySelectorAll('#valorNodo');
+    let $allValues = [];
+    $allP.forEach(p => $allValues.push(Number(p.innerText)));
+    
+    $allValues = quickSort($allValues);
+
+    const $allNodes = document.querySelectorAll('#nodo');
+    const $allArrows = document.querySelectorAll('#containerArrow');
+
+    $allNodes.forEach(div => div.remove());
+    $allArrows.forEach(div => div.remove());
+
+    const ui = new UI();
+
+    $allValues.forEach(value => ui.crearNodo(new Nodo(value)))
 
 }
