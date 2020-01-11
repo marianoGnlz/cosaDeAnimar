@@ -104,21 +104,113 @@ $menu.onclick = function(){
     $('.collapse').collapse('toggle')
 }
 
+/*
 function animar(){
     const $allNodes = document.querySelectorAll('#nodo');
     const $allArrows = document.querySelectorAll('#containerArrow');
 
-    $allNodes[0].classList.add('pivote');
+    $allNodes[1].classList.add('pivote');
 
     setTimeout(function(){
-        $allNodes[1].classList.add('nodoDerechaDos')
+        $allNodes[2].classList.add('nodoDerechaDos')
     },5000)
 
 
 
 
     setTimeout(function(){
-        $allNodes[0].classList.remove('pivote');
-        $allNodes[1].classList.remove('nodoDerechaDos')
+        $allNodes[1].classList.remove('pivote');
+        $allNodes[2].classList.remove('nodoDerechaDos')
     },10000)
 }
+*/
+
+
+const $conteinerWidth = document.querySelector("#conteinerNodes").clientWidth;
+const $nodo = document.querySelector('#nodo');
+const nodoKeyFrame = new KeyframeEffect(
+                        $nodo,
+                        [
+                            {
+                            // 0% 
+                                top: '112px' , 
+                                left: '0px' 
+                            },
+                            {
+                            // 10% 
+                                top: '112px' , 
+                                left: $conteinerWidth*0.1+'px'
+                            },
+                            {  // 20% 
+                                top: '112px',
+                                left: $conteinerWidth*0.2+'px'
+                            },
+                            {
+                                // 30% 
+                                top: '112px',
+                                left: $conteinerWidth*0.35+'px'
+                            },
+                            {
+                                // 40% 
+                                top: '112px',
+                                left: $conteinerWidth*0.5+'px'
+                            },
+                            {
+                                // 100% 
+                                top:'112px',
+                                left: $conteinerWidth*0.9+'px'
+                            }
+
+                        ],
+                        {duration: 10000, easing: 'ease-out'}
+                    );
+    const nodoAnimate = new Animation(nodoKeyFrame, document.timeline)
+
+    $nodo.addEventListener('click',hacer,false)
+
+
+    function hacer(event){
+        nodoAnimate.play()
+        nodoAnimate.onfinish = function(){
+            const $nodo = document.querySelectorAll('#nodo')[1];
+            const nodoKeyFrame = new KeyframeEffect(
+                                    $nodo,
+                                    [
+                                        {
+                                            // 0% 
+                                                top: '112px' , 
+                                                left: '0px' 
+                                            },
+                                            {
+                                            // 10% 
+                                                top: '112px' , 
+                                                left: $conteinerWidth*0.1+'px'
+                                            },
+                                            {  // 20% 
+                                                top: '112px',
+                                                left: $conteinerWidth*0.2+'px'
+                                            },
+                                            {
+                                                // 30% 
+                                                top: '112px',
+                                                left: $conteinerWidth*0.35+'px'
+                                            },
+                                            {
+                                                // 40% 
+                                                top: '112px',
+                                                left: $conteinerWidth*0.5+'px'
+                                            },
+                                            {
+                                                // 100% 
+                                                top:'112px',
+                                                left: $conteinerWidth*0.9+'px'
+                                            }
+
+                                    ],
+                                    {duration: 10000, easing: 'ease-out'}
+                                );
+                const nodoAnimate = new Animation(nodoKeyFrame, document.timeline)
+
+                nodoAnimate.play()
+        }
+    }

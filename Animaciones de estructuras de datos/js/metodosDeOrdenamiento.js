@@ -37,7 +37,6 @@ function hacerCosas(){
     nodoAnimate = new NodoAnimate('nodoDerecha').crearNodoAnimate();
     $divColDerecha.appendChild(nodoAnimate);
 
-
     conteinerDos.classList.add('row');
     conteinerDos.appendChild($divColIzquierda);
     conteinerDos.appendChild($divColDerecha);
@@ -47,6 +46,9 @@ function hacerCosas(){
 
 
 }
+
+
+
 
 
 
