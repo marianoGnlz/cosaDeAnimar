@@ -1,17 +1,3 @@
-/*
-
-<div id="conteinerNodesDos" class="ml-3 mr-3 mb-5 position-relative">
-        <div id="nodoPivote" class="bg-info d-inline-block position-relative">
-            <div id="conteinerNodo" class="d-inline-block">
-                <p id="valorNodo" class="position-absolute mb-0 h3">3</p>
-            </div>
-        </div>
-    </div>
-
-
-
-*/
-
 class conteinerNodo {
     constructor(id){
         this.id = id;
@@ -34,12 +20,12 @@ class conteinerNodo {
 
 
 
-class NodoAnimate{
+class NodoAnimado{
     constructor(id){
         this.id = id;
     }
 
-    crearNodoAnimate(){
+    crearNodoEstatico(){
         const $divNodo = document.createElement('div');
         $divNodo.id = this.id;
         $divNodo.className = 'bg-info d-inline-block position-relative'
