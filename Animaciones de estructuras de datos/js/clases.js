@@ -25,16 +25,77 @@ class NodoAnimado{
         this.id = id;
     }
 
-    crearNodoEstatico(){
+    keyFrameADerecha(entry){
+        let nodoKeyFrame = new KeyframeEffect(
+            entry[1],
+            [
+                {
+                // 0% 
+                    top: '112px' , 
+                    left: '0px' 
+                },
+                {
+                    // 20% 
+                    top:'112px',
+                    left: reposicionamientoADerecha(entry[0])+'px'
+                },
+                {
+                    // 100% 
+                    top:'112px',
+                    left: reposicionamientoADerecha(entry[0])+'px'
+                }
+    
+            ],
+            {duration: 2000, easing: 'ease-out'}
+        );
+        return nodoKeyFrame
+    }
+    keyFrameAIzquierda(entry){
+        let nodoKeyFrame = new KeyframeEffect(
+            entry[1],
+            [
+                {
+                // 0% 
+                    top: '112px' , 
+                    left: '0px' 
+                },
+                {
+                    // 20% 
+                    top:'112px',
+                    left: reposicionamientoAIzquierda(entry[0])+'px'
+                },
+                {
+                    // 100% 
+                    top:'112px',
+                    left: reposicionamientoAIzquierda(entry[0])+'px'
+                }
+    
+            ],
+            {duration: 2000, easing: 'ease-out'}
+        );
+        return nodoKeyFrame
+    }
+
+    crearNodoEstatico(nodo){
         const $divNodo = document.createElement('div');
         $divNodo.id = this.id;
         $divNodo.className = 'bg-info d-inline-block position-relative'
         $divNodo.innerHTML = `
             <div id="conteinerNodo" class="d-inline-block">
-                <p id="valorNodo" class="position-absolute mb-0 h3">3</p>
+                <p id="valorNodo" class="position-absolute mb-0 h3">${nodo}</p>
             </div>
         `
         return $divNodo
+    }
+    crearNodoAlaDerecha(nodo){
+        const $conteinerDiv = document.querySelectorAll("#conteinerNodesDiv .col")[1];
+        const $nodoDerecha = new NodoAnimado('nodoDerecha').crearNodoEstatico(nodo);
+        $conteinerDiv.appendChild($nodoDerecha);
+    }
+    crearNodoAlaIzquierda(nodo){
+        const $conteinerDiv = document.querySelectorAll("#conteinerNodesDiv .col")[0];
+        const $nodoIzquierda = new NodoAnimado('nodoIzquierda').crearNodoEstatico(nodo);
+        $conteinerDiv.appendChild($nodoIzquierda);
     }
 }
 

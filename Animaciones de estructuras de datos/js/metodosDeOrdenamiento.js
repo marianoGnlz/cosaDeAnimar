@@ -18,10 +18,14 @@ function quickSort(array){
 }
 
 
+
+
+
+
 function hacerCosas(){
     const $conteiners = document.querySelector('#conteiners');
     let conteinerDos = new conteinerNodo('conteinerNodesDos').crearConteiner();
-    let nodoAnimate = new NodoAnimado('nodoPivote').crearNodoEstatico();
+    let nodoAnimate = new NodoAnimado('nodoPivote').crearNodoEstatico(5);
 
     conteinerDos.appendChild(nodoAnimate)
     $conteiners.appendChild(conteinerDos)
@@ -29,14 +33,6 @@ function hacerCosas(){
     conteinerDos = new conteinerNodo('conteinerNodesDiv').crearConteiner();
     let $divColIzquierda = (new conteinerNodo).crearColumnas();
     let $divColDerecha = (new conteinerNodo).crearColumnas();
-
-    nodoAnimate = new NodoAnimado('nodo').crearNodoEstatico();
-    $divColIzquierda.appendChild(nodoAnimate);
-    
-
-    nodoAnimate = new NodoAnimado('nodoDerecha').crearNodoEstatico();
-    $divColDerecha.appendChild(nodoAnimate);
-
     conteinerDos.classList.add('row');
     conteinerDos.appendChild($divColIzquierda);
     conteinerDos.appendChild($divColDerecha);
@@ -44,12 +40,6 @@ function hacerCosas(){
     $conteiners.appendChild(conteinerDos);
     
 
-}
-
-function crearNodoAlaDerecha(){
-    const $conteinerDiv = document.querySelectorAll("#conteinerNodesDiv .col")[1];
-    const $nodoDerecha = new NodoAnimado('nodoDerecha').crearNodoEstatico();
-    $conteinerDiv.appendChild($nodoDerecha);
 }
 
 
