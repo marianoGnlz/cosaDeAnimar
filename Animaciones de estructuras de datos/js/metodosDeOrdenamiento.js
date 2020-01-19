@@ -25,7 +25,8 @@ function quickSort(array){
 function hacerCosas(){
     const $conteiners = document.querySelector('#conteiners');
     let conteinerDos = new conteinerNodo('conteinerNodesDos').crearConteiner();
-    let nodoAnimate = new NodoAnimado('nodoPivote').crearNodoEstatico(5);
+    let nodo = new Nodo(Number(document.querySelector('#conteinerNodes #valorNodo').innerHTML));
+    let nodoAnimate = new NodoAnimado('nodoPivote').crearNodoEstatico(nodo);
 
     conteinerDos.appendChild(nodoAnimate)
     $conteiners.appendChild(conteinerDos)
@@ -43,8 +44,17 @@ function hacerCosas(){
 }
 
 
+function derecha(){
+    const nodo = new Nodo(4);
+    const asdas = new NodoAnimado();
+    asdas.crearNodoAlaDerecha(nodo);
+}
 
-
+function izquierda(){
+    const nodo = new Nodo(2);
+    const asdas = new NodoAnimado();
+    asdas.crearNodoAlaIzquierda(nodo);
+}
 
 
 
@@ -56,7 +66,7 @@ function hacerCosas(){
 
 
 function prueba(){
-    let x = [3,4,5,6,0,2,7,4,8,9]
+    let x = [5, 7, 6, 4, 3, 8, 2, 9, 0, 1, 8]
     let ui = new UI()
     x.forEach(n => ui.crearNodo(new Nodo(n)))
 }

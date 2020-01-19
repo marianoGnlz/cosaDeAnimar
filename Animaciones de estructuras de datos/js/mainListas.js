@@ -81,7 +81,7 @@ function intercambio(uno,dos){
 const $quickSort = document.querySelector('#quick-sort');
 
 $quickSort.onclick = function(){
-    const $allP = document.querySelectorAll('#valorNodo');
+    const $allP = document.querySelectorAll('#conteinerNodes #valorNodo');
     let $allValues = [];
     $allP.forEach(p => $allValues.push(Number(p.innerText)));
     
@@ -107,18 +107,20 @@ $menu.onclick = function(){
 function reposicionamientoADerecha(numeroDeNodo){
     const $conteinerWidth = document.querySelector("#conteinerNodes").clientWidth;
     if (numeroDeNodo % 2 === 0){
-        return (($conteinerWidth+(50*contadorDerecha))-(50*(numeroDeNodo+1)+58*numeroDeNodo))-50*numeroDeNodo
+        return (($conteinerWidth+(50*(contadorDerecha+1)))-(50*(numeroDeNodo+1)+58*numeroDeNodo))-50*(numeroDeNodo-1)
     }else{
-        return (($conteinerWidth+(50*contadorDerecha))-(50*(numeroDeNodo+1)+58*numeroDeNodo))-50*(numeroDeNodo-1)
+        return (($conteinerWidth+(50*(contadorDerecha+1)))-(50*(numeroDeNodo+1)+58*numeroDeNodo))-50*numeroDeNodo
     }
 }
 
+/*
+function reposicionamientoADerecha(numeroDeNodo){
+    const $conteinerWidth = document.querySelector("#conteinerNodes").clientWidth;
+    return ($conteinerWidth+50*(contadorDerecha+1)-100*(numeroDeNodo+1))-(100*contadorDerecha)
+}
+*/
 function reposicionamientoAIzquierda(numeroDeNodo){
-    if (numeroDeNodo % 2 === 0) {
-        return -(56*(numeroDeNodo+contadorIzquierda))
-    }else{
-        return -(56*(numeroDeNodo+contadorIzquierda+1))
-    }
+    return -(55*numeroDeNodo*2-(55*contadorIzquierda))
 }
 
 
@@ -126,20 +128,33 @@ const $botonTemporal = document.querySelector("#sort > button")
 let contadorIzquierda = 0;
 let contadorDerecha = 0;
 $botonTemporal.onclick = function(){
+    let pivote;
+    document.querySelectorAll('#nodoIzquierda').forEach(div => div.remove())
+    document.querySelectorAll('#nodoDerecha').forEach(div => div.remove())
     const creadorDeNodos = new NodoAnimado();
-    let n = true;
     const $allNodes = document.querySelectorAll('#nodo');
     let keyFrameNodo = new NodoAnimado();
     for(let entry of $allNodes.entries()){
-        if (n){
-            var nodoAnimate = new Animation(keyFrameNodo.keyFrameAIzquierda(entry), document.timeline);
-            contadorIzquierda++
+        if(!entry[0]){
+            pivote = Number(entry[1].firstElementChild.firstElementChild.innerText)
         }else{
-            var nodoAnimate = new Animation(keyFrameNodo.keyFrameADerecha(entry), document.timeline);
-            contadorDerecha++
+            let value = Number(entry[1].firstElementChild.firstElementChild.innerText)
+            let nodo = new Nodo(value)
+            if (value > pivote){
+                var nodoAnimate = new Animation(keyFrameNodo.keyFrameAIzquierda(entry), document.timeline);
+                contadorIzquierda++
+                setTimeout(function(){
+                    creadorDeNodos.crearNodoAlaIzquierda(nodo)
+                },2000);
+            }else{
+                var nodoAnimate = new Animation(keyFrameNodo.keyFrameADerecha(entry), document.timeline);
+                contadorDerecha++
+                setTimeout(function(){
+                    creadorDeNodos.crearNodoAlaDerecha(nodo)
+                },2000);
+            }
+            nodoAnimate.play();
         }
-        n = !n
-        nodoAnimate.play();
     }
     contadorDerecha = 0;
     contadorIzquierda = 0;

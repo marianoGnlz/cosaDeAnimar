@@ -82,7 +82,7 @@ class NodoAnimado{
         $divNodo.className = 'bg-info d-inline-block position-relative'
         $divNodo.innerHTML = `
             <div id="conteinerNodo" class="d-inline-block">
-                <p id="valorNodo" class="position-absolute mb-0 h3">${nodo}</p>
+                <p id="valorNodo" class="position-absolute mb-0 h3">${nodo.valor}</p>
             </div>
         `
         return $divNodo
