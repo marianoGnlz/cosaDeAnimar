@@ -106,11 +106,19 @@ $menu.onclick = function(){
 
 function reposicionamientoADerecha(numeroDeNodo){
     const $conteinerWidth = document.querySelector("#conteinerNodes").clientWidth;
-    return (($conteinerWidth+(50*contadorDerecha))-(50*(numeroDeNodo+1)+58*numeroDeNodo))-50*(numeroDeNodo-1)
+    if (numeroDeNodo % 2 === 0){
+        return (($conteinerWidth+(50*contadorDerecha))-(50*(numeroDeNodo+1)+58*numeroDeNodo))-50*numeroDeNodo
+    }else{
+        return (($conteinerWidth+(50*contadorDerecha))-(50*(numeroDeNodo+1)+58*numeroDeNodo))-50*(numeroDeNodo-1)
+    }
 }
 
 function reposicionamientoAIzquierda(numeroDeNodo){
-    return -(56*(numeroDeNodo+contadorIzquierda))
+    if (numeroDeNodo % 2 === 0) {
+        return -(56*(numeroDeNodo+contadorIzquierda))
+    }else{
+        return -(56*(numeroDeNodo+contadorIzquierda+1))
+    }
 }
 
 
@@ -119,7 +127,7 @@ let contadorIzquierda = 0;
 let contadorDerecha = 0;
 $botonTemporal.onclick = function(){
     const creadorDeNodos = new NodoAnimado();
-    let n = false;
+    let n = true;
     const $allNodes = document.querySelectorAll('#nodo');
     let keyFrameNodo = new NodoAnimado();
     for(let entry of $allNodes.entries()){
