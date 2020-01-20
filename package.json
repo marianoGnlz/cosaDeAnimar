@@ -1,0 +1,23 @@
+{
+  "name": "cosadeanimar",
+  "version": "1.0.0",
+  "description": "Estructuras animadas",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marianoGnlz/cosaDeAnimar.git"
+  },
+  "author": "Yop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marianoGnlz/cosaDeAnimar/issues"
+  },
+  "homepage": "https://github.com/marianoGnlz/cosaDeAnimar#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1"
+  }
+}
