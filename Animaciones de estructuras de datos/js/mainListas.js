@@ -152,7 +152,7 @@ function quickSortAnimation(idNodo){
         }
     }
     setTimeout(function(){
-        hacerCosas()
+        hacerCosas('Div #colIzquierda')
     },2100);
 }
 

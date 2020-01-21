@@ -22,10 +22,10 @@ function quickSort(array){
 
 
 
-function hacerCosas(){
+function hacerCosas(div){
     const $conteiners = document.querySelector('#conteiners');
     let conteinerDos = new conteinerNodo('conteinerNodesDos').crearConteiner();
-    let nodo = new Nodo(Number(document.querySelector('#conteinerNodes #valorNodo').innerHTML));
+    let nodo = new Nodo(Number(document.querySelector(`#conteinerNodes${div} #valorNodo`).innerHTML));
     let nodoAnimate = new NodoAnimado('nodoPivote').crearNodoEstatico(nodo);
 
     conteinerDos.appendChild(nodoAnimate)
@@ -33,7 +33,10 @@ function hacerCosas(){
 
     conteinerDos = new conteinerNodo('conteinerNodesDiv').crearConteiner();
     let $divColIzquierda = (new conteinerNodo).crearColumnas();
+    $divColIzquierda.id = 'colIzquierda'
     let $divColDerecha = (new conteinerNodo).crearColumnas();
+    $divColDerecha.id = 'colDerecha'
+    
     conteinerDos.classList.add('row');
     conteinerDos.appendChild($divColIzquierda);
     conteinerDos.appendChild($divColDerecha);
@@ -59,4 +62,4 @@ function prueba(){
 }
 
 prueba()
-hacerCosas()
+hacerCosas('')
