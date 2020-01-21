@@ -105,20 +105,9 @@ $menu.onclick = function(){
 }
 
 function reposicionamientoADerecha(numeroDeNodo){
-    const $conteinerWidth = document.querySelector("#conteinerNodes").clientWidth;
-    if (numeroDeNodo % 2 === 0){
-        return (($conteinerWidth+(50*(contadorDerecha+1)))-(50*(numeroDeNodo+1)+58*numeroDeNodo))-50*(numeroDeNodo-1)
-    }else{
-        return (($conteinerWidth+(50*(contadorDerecha+1)))-(50*(numeroDeNodo+1)+58*numeroDeNodo))-50*numeroDeNodo
-    }
+    const $conteinerWidth = document.querySelector("#conteinerNodes").clientWidth-53;
+    return $conteinerWidth-(106*numeroDeNodo+contadorDerecha*53)
 }
-
-/*
-function reposicionamientoADerecha(numeroDeNodo){
-    const $conteinerWidth = document.querySelector("#conteinerNodes").clientWidth;
-    return ($conteinerWidth+50*(contadorDerecha+1)-100*(numeroDeNodo+1))-(100*contadorDerecha)
-}
-*/
 function reposicionamientoAIzquierda(numeroDeNodo){
     return -(55*numeroDeNodo*2-(55*contadorIzquierda))
 }
@@ -131,8 +120,14 @@ $botonTemporal.onclick = function(){
     let pivote;
     document.querySelectorAll('#nodoIzquierda').forEach(div => div.remove())
     document.querySelectorAll('#nodoDerecha').forEach(div => div.remove())
+    quickSortAnimation('nodo');
+    contadorDerecha = 0;
+    contadorIzquierda = 0;
+}
+
+function quickSortAnimation(idNodo){
     const creadorDeNodos = new NodoAnimado();
-    const $allNodes = document.querySelectorAll('#nodo');
+    const $allNodes = document.querySelectorAll(`#${idNodo}`);
     let keyFrameNodo = new NodoAnimado();
     for(let entry of $allNodes.entries()){
         if(!entry[0]){
@@ -140,7 +135,7 @@ $botonTemporal.onclick = function(){
         }else{
             let value = Number(entry[1].firstElementChild.firstElementChild.innerText)
             let nodo = new Nodo(value)
-            if (value > pivote){
+            if (value < pivote){
                 var nodoAnimate = new Animation(keyFrameNodo.keyFrameAIzquierda(entry), document.timeline);
                 contadorIzquierda++
                 setTimeout(function(){
@@ -156,8 +151,8 @@ $botonTemporal.onclick = function(){
             nodoAnimate.play();
         }
     }
-    contadorDerecha = 0;
-    contadorIzquierda = 0;
+    setTimeout(function(){
+        hacerCosas()
+    },2100);
 }
-
 

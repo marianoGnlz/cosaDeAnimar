@@ -44,19 +44,6 @@ function hacerCosas(){
 }
 
 
-function derecha(){
-    const nodo = new Nodo(4);
-    const asdas = new NodoAnimado();
-    asdas.crearNodoAlaDerecha(nodo);
-}
-
-function izquierda(){
-    const nodo = new Nodo(2);
-    const asdas = new NodoAnimado();
-    asdas.crearNodoAlaIzquierda(nodo);
-}
-
-
 
 
 
