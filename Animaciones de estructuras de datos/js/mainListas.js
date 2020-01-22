@@ -108,8 +108,12 @@ function reposicionamientoADerecha(numeroDeNodo){
     const $conteinerWidth = document.querySelector("#conteinerNodes").clientWidth-53;
     return $conteinerWidth-(106*numeroDeNodo+contadorDerecha*53)
 }
-function reposicionamientoAIzquierda(numeroDeNodo){
-    return -(55*numeroDeNodo*2-(55*contadorIzquierda))
+function reposicionamientoAIzquierda(numeroDeNodo,id){
+   if(id.id === 'nodo'){
+        return -(55*numeroDeNodo*2-(55*contadorIzquierda))
+   }else{
+        return -(55*numeroDeNodo-(55*contadorIzquierda))
+   }
 }
 
 
@@ -117,7 +121,6 @@ const $botonTemporal = document.querySelector("#sort > button")
 let contadorIzquierda = 0;
 let contadorDerecha = 0;
 $botonTemporal.onclick = function(){
-    let pivote;
     document.querySelectorAll('#nodoIzquierda').forEach(div => div.remove())
     document.querySelectorAll('#nodoDerecha').forEach(div => div.remove())
     quickSortAnimation('nodo');
@@ -126,6 +129,7 @@ $botonTemporal.onclick = function(){
 }
 
 function quickSortAnimation(idNodo){
+    let pivote;
     const creadorDeNodos = new NodoAnimado();
     const $allNodes = document.querySelectorAll(`#${idNodo}`);
     let keyFrameNodo = new NodoAnimado();
@@ -151,8 +155,43 @@ function quickSortAnimation(idNodo){
             nodoAnimate.play();
         }
     }
-    setTimeout(function(){
-        hacerCosas('Div #colIzquierda')
-    },2100);
+    setTimePivote()
+    contadorDerecha = 0;
+    contadorIzquierda = 0;
 }
 
+function setTime(){
+    return new Promise(
+        resolve => {
+            setTimeout(
+                () => {
+                    resolve('nodoIzquierda')
+                },2000
+            )
+        }
+    );
+}
+
+function setTimePivote(){
+    return new Promise(
+        resolve => {
+            setTimeout(
+                () => {
+                    resolve(hacerCosas('Div'))
+            },2000)
+        }
+    );
+}
+
+async function crearPivote(){
+   return await setTimePivote()
+}
+
+async function llamadaRecursiva(){
+    const result = await setTime()
+    quickSortAnimation(result)
+}
+
+function borrarNodosIzquierda(){
+    document.querySelectorAll('#nodoIzquierda').forEach(div => div.remove())
+}

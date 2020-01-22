@@ -62,12 +62,12 @@ class NodoAnimado{
                 {
                     // 20% 
                     top:'112px',
-                    left: reposicionamientoAIzquierda(entry[0])+'px'
+                    left: reposicionamientoAIzquierda(entry[0],entry[1])+'px'
                 },
                 {
                     // 100% 
                     top:'112px',
-                    left: reposicionamientoAIzquierda(entry[0])+'px'
+                    left: reposicionamientoAIzquierda(entry[0],entry[1])+'px'
                 }
     
             ],
